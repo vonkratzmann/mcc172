@@ -109,7 +109,7 @@ Functions in “scantofile.c”:
 *****************************/
 
 /****************************
- * iepe_power_off()  - shutdown the hardware
+ * iepe_power_off()  - power down the transducers
  * 
  * If error appends it to the error log file.
 *****************************/
@@ -163,12 +163,9 @@ Functions in “utils.c”:
 ****************************/   
 
 /****************************
- * utils_getfilepath() - gets absolute path to file
+ * utils_getfilepath() gets path to file in specified directory
  *
- * Gets the home directory from the OS for the user,
- * gets the path for the working dir defined in PATHRESULTS
- * returns the complete path including filename in buffer
- * 
+ * Returns the complete path including filename in buffer
  * If buffer is too small or any errors function returns zero
  * and the contents of buffer are undefined.
  * 

@@ -58,13 +58,15 @@ int main(void)
     char log_file[MAX_ARRAY_SIZE] = {0};        //log of data collected from mcc172
     FILE *fp_logfile;
     utils_get_date_time(date_time, sizeof(date_time));
-
+ls -la
     char tmp[MAX_ARRAY_SIZE * 2] = {0};
 
     /* get name and path of configuration file
      * if errors, add to error log file, and quit.
-     */ 
-    if (!utils_getfilepath(config_file, sizeof(tmp), SUBD_CONFIG, FILE_VIB_CONFIG))
+     */
+
+     printf("hello");
+    if (!utils_getfilepath(config_file, sizeof(config_file), SUBD_CONFIG, FILE_VIB_CONFIG))
     {
         sprintf(tmp, "%s%s\n", ERROR_XMLFILE, config_file);
         add_to_errorlog_quit(tmp);
@@ -439,7 +441,7 @@ stop_if_error(int result)
 
 
 /****************************
- * iepe_power_off() - shutdown the hardware
+ * iepe_power_off() - power down the transducers
  * 
  * If error appends it to the error log file.
 *****************************/

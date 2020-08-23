@@ -93,12 +93,9 @@ utils_get_date_time(char* buffer, int size) {
 
 
 /****************************
- * utils_getfilepath() gets absolute path to file
+ * utils_getfilepath() gets path to file in specified directory
  *
- * Gets the home directory from the OS for the user,
- * gets the path for the working dir defined in PATHRESULTS
- * returns the complete path including filename in buffer
- * 
+ * Returns the complete path including filename in buffer
  * If buffer is too small or any errors function returns zero
  * and the contents of buffer are undefined.
  * 
@@ -113,12 +110,10 @@ int
 utils_getfilepath(char* buffer, int buf_size, char* sub_dir, char* file_name)
 {
     int result;
-    //get first part, ie home path
-    char* envPath = getenv("HOME");  
-
-    //combine home path, with sub directory, with filename
+  
+    // sub directory, with filename
     //found snprintf() buggy, so no check on overwriting the buffer
-    result = sprintf(buffer, "%s%s%s", envPath, sub_dir, file_name);
+         result = sprintf(buffer, "%s%s", sub_dir, file_name);
     if  (result == -1)
     {
         return 0;                   // snprintf() returns -1 on error
@@ -128,11 +123,9 @@ utils_getfilepath(char* buffer, int buf_size, char* sub_dir, char* file_name)
     {
         return 0;                   //buffer was too small and path truncated
     }
-    
 #ifdef DEBUG_UTILS
     printf("utils_getfilepath: %s\n", buffer);
 #endif
-
     return sizeof(buffer);
 }
 
