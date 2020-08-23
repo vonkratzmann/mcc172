@@ -1,0 +1,2 @@
+# run job every day at 7:00 pm
+* 19 * * * ~/mcc172/source_files/scantofile

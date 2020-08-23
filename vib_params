@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- Very simple XML file with parameters for mcc172 hat board, -->
+<!-- only supports one level of tags, -->
+<!-- and the file is meant to be very short. -->
+<!-- The number of characters in the file, less comments, -->
+<!-- has to be less than MAX_FILE_SIZE which is set to 2000. -->
+<!-- The file will only be processed up to MAX_FILE_SIZE Charaters, -->
+<!-- the remaining characters will be ignored. -->
+
+<!-- The tag values can be changed at any time and the program re-run -->
+
+<!-- ** NOTE:-  ** -->
+<!-- All values except the options parameter have to be greater than zero -->
+<!-- Comments cannot span multiple lines -->
+
+
+<!--  ***** PARAMETERS ***** -->
+
+<!-- The options parameter is set to 0 for default operation, which is:-
+<!-- scaled; calibrated data; no trigger; and finite operation. -->
+<!-- Currently the only option supported is default. -->
+<options>0</options>
+
+
+<!-- This is also referred to as the "sampling rate per channel" -->
+<!-- The MCC 172 can generate an ADC sampling clock equal to -->
+<!-- 51.2 kHz divided by an integer between 1 and 256. -->
+<!-- The data_rate_per_channel will be internally converted
+<!-- to the nearest valid rate. -->
+<scan_rate> 10240.0</scan_rate>
+
+
+<!-- For "finite mode" the buffer size will be allocated as the
+<!-- total number of samples in the scan.
+<!-- Specifying a very large value for samples_per_channel -->
+<!-- could use too much of the Raspberry Pi memory. -->
+<!-- If the memory allocation fails, the function will return -->
+<!-- [RESULT_RESOURCE_UNAVAIL]. The allocation could succeed, -->
+<!-- but the lack of free memory could cause other -->
+<!-- problems in the Raspberry Pi. -->  
+<samples_per_channel>1024.00</samples_per_channel>
+
+<!-- software only supports from 1 to 2 channels-->
+<number_of_channels>2</number_of_channels>
+
+<!-- Default sensitivity is 1000.0 mv/unit -->
+<!-- Examples, a sensor with a sensitivity of 10 V/g. -->
+<!-- Set the sensitivity to 10,000, the returned data will be in units of g.-->
+<!-- A vibration sensor with a sensitivity of 100 mV/g.-->
+<!-- Set the sensitivity to 100, the returned data will be in units of g. -->
+<sensitivity>100.0</sensitivity>
+
+<!-- IEPE power supply is either on or off -->
+<iepe_supply>on</iepe_supply>
+
+<!-- end of file-->

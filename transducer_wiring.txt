@@ -1,0 +1,61 @@
+2020/08/14
+installes os
+upgraded all s/w packeges
+changed password of user pi to nov15117
+set up gmail
+installed Libre Office
+installed CodeLIte as IDE for developing c code
+
+2020/08/15
+installed one MCC172 DAQ HAT
+Note: no unique serial number
+to distinguish one MCC172 from another
+
+Trasducers
+Bearing & power transducer solutions bsc hs-150t1005402
+ - could not find any details on the web
+
+Hansford sensor HS-170S 100 54 02 details:
+
+  Pin 1 - No Connection 	cable white
+  Pin 2 - +ve Power	cable brown
+  Pin 3 - No Connection	cable Black
+  Pin 4 - 0V		cable Blue
+
+  (The IEPE connector on the MCC172 hat board stands for 
+  Integrated Electronics Piezo-Electric. 
+  Note: on a IEPE the power supply and the sensor signal are transmitted
+  via one shielded wire.)
+
+MCC 172 pin layout
+Analog input screw terminal pinout:
+
+  Pin Signal name  Pin description
+  1   CH0+  Channel 0  positive input
+  2   CH0-  Channel 0  negative input
+  3   CH1+  Channel 1  positive input
+  4   CH1-  Channel 1  negative input
+
+Looking at the top of the board
+  CHO       0    0    0    0     CH1
+  IEPE     cho+ cho- ch1+ ch1-   IEPE
+
+Pluged in hat, downloaded MCCdaq library from github (github.com/mccdaq/daqhats)
+Connected the Hansford Sensor to the channel 0 screw terminals
+Ran demo, worked ok.
+
+Installed FTP client filezilla
+
+2020/08/16
+changed root password to nov15117
+
+C:\> FOR /L %i IN (1,1,254) DO -n 1 -w 100 192.168.1.%i | FIND /i "Reply"
+
+2020/08/17
+set up ssh on windows pc tested remote access to the raspbery pi command line
+tested scp between raspberry pi and pc
+ran fft demo
+started to write instructions on how to remotely install vibration system
+
+202/08/18
+changed password for root and pi to raspberry 

@@ -1,0 +1,68 @@
+Setup Remote Access to the Raspberry Pi
+
+This assume the Raspberry Pi will operate in a headless mode ie no display or keyboard.
+
+This setup is designed to be done remotely, but in order to access the Raspberry Pi 
+remotely set up SSH to allow remote access to the raspberry pi command line.
+
+The Raspberry Pi OS has the SSH server disabled by default. It can be enabled manually 
+from the command line:
+
+1. sudo raspi-config in a terminal window
+2. Select Interfacing Options
+3. Navigate to and select SSH
+4. Choose Yes
+5. Select Ok
+6. Choose Finish
+
+For headless setup, SSH can be enabled by placing a file named ssh, 
+without any extension, onto the boot partition of the SD card from another computer. 
+When the Pi boots, it looks for the ssh file. If it is found, SSH is enabled and the file is deleted. 
+The content of the file does not matter; it could contain text, or nothing at all.
+
+If you have loaded Raspberry Pi OS onto a blank SD card, you will have two partitions. 
+The first one, which is the smaller one, is the boot partition. Place the file into this one.
+
+To run the client on windows 10, 
+go to Settings > Apps > Apps & features > Manage optional features > Add a feature, 
+and choose to install OpenSSH Client.
+
+To test the connection from the windows computer to the Raspberry Pi: 
+
+  ssh pi@<IP>
+
+replacing the default pi user with your username and IP with the IP address of the Raspberry Pi, 
+  e.g. ssh eben@192.168.1.5
+
+Next you will be prompted for the password for the Raspberry Pi.
+You should now be able to see the Raspberry Pi prompt:
+
+  pi@raspberrypi ~ $
+
+Exit so the next steps can be done on the computer
+
+
+Transfer Setup and Configuration Files to the Raspberry Pi
+
+On a Dos window on the windows PC, using SCP (Secure Copy) 
+copy the configuration files form the windows computer to the Raspberry Pi, but first
+create the directory on the raspberry Pi:
+
+  ssh pi@<IP> "mkdir -p ~/configuration/"
+
+then copy the file to the computer:
+
+  scp -rp <source directory>/configuration pi@<IP>:~/configuration/
+
+  e.g. scp -rp mcc172/config.* ben@192.168.1.5:configuration/
+
+
+Run Setup on Raspberry 
+
+Run the set up file which will:
+ - config the Raspberry Pi
+ - setup the cron job to gather the vibration data at the specified frquency
+ - setup the cron job to transfer the vibration data to the PC
+
+Now periodically monitor the files and error log files to make sure the vibration data gathering 
+program is working and the files are being transferrd to the PC
