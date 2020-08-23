@@ -214,7 +214,7 @@ int main(void)
     
     fp_logfile = fopen(log_file, "w");
     if (fp_logfile == NULL)
-    {
+    { 
         sprintf(tmp, "%s%s\n", ERROR_LOGFILE, log_file);
         add_to_errorlog_quit(tmp);        
     }
@@ -274,8 +274,8 @@ int main(void)
                 else
                 {
                     fprintf(fp_logfile, "%s%s, %12.7f, %12.7f\n",
-                        date_time, s, read_buf[index], read_buf[index+1]);   
-                }
+                        date_time, s, read_buf[index], read_buf[index+1]);
+                                       }
                 //increment time for a sample
                 sample_time += sample_time_inc;    
             }
