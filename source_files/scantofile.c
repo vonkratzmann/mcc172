@@ -6,6 +6,8 @@
  * number of samples is acquired for each channel.
  ****************************/
 #include <math.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include "daqhats_utils.h"
 #include "scantofile.h"
 #include "utils.h"
@@ -58,14 +60,13 @@ int main(void)
     char log_file[MAX_ARRAY_SIZE] = {0};        //log of data collected from mcc172
     FILE *fp_logfile;
     utils_get_date_time(date_time, sizeof(date_time));
-ls -la
+
     char tmp[MAX_ARRAY_SIZE * 2] = {0};
 
     /* get name and path of configuration file
      * if errors, add to error log file, and quit.
      */
 
-     printf("hello");
     if (!utils_getfilepath(config_file, sizeof(config_file), SUBD_CONFIG, FILE_VIB_CONFIG))
     {
         sprintf(tmp, "%s%s\n", ERROR_XMLFILE, config_file);
@@ -326,10 +327,11 @@ add_to_errorlog_quit(char* message)
 
 
 /****************************
- * get_log_file() - get the name and absolute path to the log file
+ * get_log_file() - get the name and path to the log file
  *
+ * Make sub directory to store results in.
  * Get the hostname, date and time which forms the filename.
- * Add absolute path to the filename.
+ * Add path to the filename.
  * If errors, add to error log, and quit as no point in proceeding
  *
  * param filename - holds complete file name on return
@@ -339,6 +341,9 @@ get_log_file(char* filename, int size)
 {
     char tmp[MAX_ARRAY_SIZE] = {0};
     char tmp1[MAX_ARRAY_SIZE * 2] = {0};
+
+    //make sub directory to store log file
+    mkdir(SUBD_RESULTS, 0731);
     
    //Get the hostname, date and time 
     if ( !utils_getnamedate(tmp, sizeof(tmp)) )
@@ -346,7 +351,7 @@ get_log_file(char* filename, int size)
         sprintf(tmp1, "%s%s\n", ERROR_LOGFILE, tmp);  
         add_to_errorlog_quit(tmp1);
     }
-    //take hostname, date and time and add to absolute path 
+    //take hostname, date and time and add to path 
     if ( !utils_getfilepath(filename, size, SUBD_RESULTS, tmp) )
     { 
         sprintf(tmp1, "%s%s\n", ERROR_LOGFILE, filename);

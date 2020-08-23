@@ -14,8 +14,8 @@
 
 
 /* define filenames and sub directories */
-#define SUBD_RESULTS "../results/"
-#define SUBD_CONFIG  "../"
+#define SUBD_RESULTS "./results/"
+#define SUBD_CONFIG  "./"
 #define FILE_VIB_CONFIG "vib_params"
 #define FILE_ERROR_LOG "errorlog"
 

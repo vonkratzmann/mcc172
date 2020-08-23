@@ -66,14 +66,15 @@ Functions in “scantofile.c”:
  ****************************/
 
 /****************************
- * get_log_file() - get the name and absolute path to the log file
+ * get_log_file() - get the name and path to the log file
  *
+ * Make sub directory to store results in.
  * Get the hostname, date and time which forms the filename.
- * Add absolute path to the filename.
+ * Add path to the filename.
  * If errors, add to error log, and quit as no point in proceeding
  *
- * param filename - holds complete file name on return 
- * ****************************/
+ * param filename - holds complete file name on return
+ *****************************/
 
 /****************************
  * utils_gettag_errchk_d gets a tag value as a double from an xml file
